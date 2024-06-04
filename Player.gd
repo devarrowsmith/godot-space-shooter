@@ -2,7 +2,8 @@ extends Area2D
 
 # Declare member variables here
 @export var speed = 400
-@export var bullet_scene: PackedScene
+
+@export var BulletScene : PackedScene
 
 var start_position = Vector2(100, 100)
 var acceleration_factor = 0.075
@@ -16,7 +17,10 @@ func _ready():
 	position = start_position
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(delta : float) -> void:
+	if Input.is_action_just_pressed("shoot"):  # "ui_select" is the space bar by default
+		fire_bullet()
+	
 	var input_vector = Vector2()
 	
 	if Input.is_action_pressed("ui_right"):
@@ -47,3 +51,8 @@ func _process(delta):
 	
 	# Move the player
 	position += velocity * delta
+
+func fire_bullet() -> void:
+	var bullet_instance = BulletScene.instantiate()
+	bullet_instance.position = self.position  # Set the bullet's initial position to the player's position
+	get_parent().add_child(bullet_instance)  # Add the bullet to the scene tree
