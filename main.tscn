@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://76tnkejm5djo"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_7jtqf"]
+[ext_resource type="Texture2D" uid="uid://btn5qmpkhxssi" path="res://assets/spaceship__player_01.svg" id="1_51wvg"]
+[ext_resource type="Script" path="res://Enemy.gd" id="3_waois"]
+[ext_resource type="Texture2D" uid="uid://bry7a0eua866i" path="res://assets/0002-enemy-01.svg" id="4_miady"]
+[ext_resource type="Script" path="res://Bullet.gd" id="5_nnv6t"]
+[ext_resource type="Texture2D" uid="uid://hyxoht7x5m40" path="res://assets/0003-bullet-01-reposition.svg" id="5_t08i5"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" type="Area2D" parent="."]
+script = ExtResource("1_7jtqf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+light_mask = 2
+scale = Vector2(4, 4)
+texture = ExtResource("1_51wvg")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player"]
+polygon = PackedVector2Array(7, -40, 56, 9, 65, 55, -32, 47, -63, 15, -66, -9, -32, -41)
+
+[node name="Bullet" type="Area2D" parent="."]
+script = ExtResource("5_nnv6t")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bullet"]
+position = Vector2(-4, -4)
+scale = Vector2(4, 4)
+texture = ExtResource("5_t08i5")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bullet"]
+polygon = PackedVector2Array(20, 36, 20, 52, 60, 52, 60, 36)
+
+[node name="Enemy" type="Area2D" parent="."]
+script = ExtResource("3_waois")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+position = Vector2(312, 4)
+scale = Vector2(8, 8)
+texture = ExtResource("4_miady")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Enemy"]
+polygon = PackedVector2Array(245, 7, 310, -29, 324, -41, 339, -51, 358, -51, 372, -25, 373, -14, 349, 15, 345, 29, 374, 53, 374, 67, 316, 58, 298, 51)
+
+[connection signal="body_entered" from="Bullet" to="Bullet" method="_on_Bullet_body_entered"]

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://76tnkejm5djo"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_7jtqf"]
+[ext_resource type="Texture2D" uid="uid://btn5qmpkhxssi" path="res://assets/spaceship__player_01.svg" id="1_51wvg"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" type="Area2D" parent="."]
+script = ExtResource("1_7jtqf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+light_mask = 2
+scale = Vector2(8, 8)
+texture = ExtResource("1_51wvg")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player"]
+polygon = PackedVector2Array(7, -40, 56, 9, 65, 55, -32, 47, -63, 15, -66, -9, -32, -41)
