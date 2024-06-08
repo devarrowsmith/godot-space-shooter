@@ -1,15 +1,13 @@
-extends Area2D
+extends CharacterBody2D
 
 # Declare member variables here
 @export var speed = 400
-
 @export var BulletScene : PackedScene
 
 var start_position = Vector2(100, 100)
 var acceleration_factor = 0.075
 var deceleration_factor = 0.05
 var drift_factor = 0.025
-var velocity = Vector2()
 
 func _ready():
 	var viewport_size = get_viewport_rect().size
@@ -56,3 +54,7 @@ func fire_bullet() -> void:
 	var bullet_instance = BulletScene.instantiate()
 	bullet_instance.position = self.position  # Set the bullet's initial position to the player's position
 	get_parent().add_child(bullet_instance)  # Add the bullet to the scene tree
+
+
+func _on_shield_body_entered(body):
+	pass # Replace with function body.

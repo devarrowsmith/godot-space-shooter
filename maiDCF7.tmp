@@ -22,6 +22,9 @@ polygon = PackedVector2Array(4, -21, 28, 4, 32, 18, 30, 27, -18, 23, -36, 4, -15
 
 [node name="Enemy" type="CharacterBody2D" parent="."]
 script = ExtResource("3_waois")
+speed = null
+amplitude = null
+frequency = null
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy"]
 position = Vector2(312, 4)
@@ -30,13 +33,13 @@ texture = ExtResource("4_miady")
 
 [node name="WeakSpot" type="Area2D" parent="Enemy"]
 
+[node name="WeakSpotHitbox" type="CollisionPolygon2D" parent="Enemy/WeakSpot"]
+polygon = PackedVector2Array(250, 7, 275, -12, 292, -19, 307, -27, 321, -44, 338, -52, 355, -51, 373, -28, 372, -13, 345, 19, 373, 54, 374, 67, 340, 62, 334, 37, 313, 11, 261, 16)
+
 [node name="Shield" type="Area2D" parent="Enemy"]
 
-[node name="WeakSpotHitbox" type="CollisionPolygon2D" parent="Enemy"]
+[node name="ShieldHitbox" type="CollisionPolygon2D" parent="Enemy/Shield"]
 polygon = PackedVector2Array(261, 14, 311, 11, 332, 36, 337, 62, 308, 55, 290, 43)
-
-[node name="ShieldHitbox" type="CollisionPolygon2D" parent="Enemy"]
-polygon = PackedVector2Array(250, 7, 275, -12, 292, -19, 307, -27, 321, -44, 338, -52, 355, -51, 373, -28, 372, -13, 345, 19, 373, 54, 374, 67, 340, 62, 334, 37, 313, 11, 261, 16)
 
 [connection signal="body_entered" from="Enemy/WeakSpot" to="Enemy" method="_on_weak_spot_body_entered"]
 [connection signal="body_entered" from="Enemy/Shield" to="Enemy" method="_on_shield_body_entered"]

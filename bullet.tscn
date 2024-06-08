@@ -14,6 +14,6 @@ scale = Vector2(4, 4)
 texture = ExtResource("2_0hq15")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bullet"]
-polygon = PackedVector2Array(20, 36, 20, 52, 60, 52, 60, 36)
+polygon = PackedVector2Array(8, 16, 8, 24, 28, 24, 28, 16)
 
 [connection signal="body_entered" from="Bullet" to="Bullet" method="_on_Bullet_body_entered"]
