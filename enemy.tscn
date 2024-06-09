@@ -21,6 +21,7 @@ polygon = PackedVector2Array(261, 14, 311, 11, 332, 36, 337, 62, 308, 55, 290, 4
 [node name="Shield" type="Area2D" parent="Enemy"]
 
 [node name="ShieldHitbox" type="CollisionPolygon2D" parent="Enemy/Shield"]
+z_index = 12
 polygon = PackedVector2Array(250, 7, 275, -12, 292, -19, 307, -27, 321, -44, 338, -52, 355, -51, 373, -28, 372, -13, 345, 19, 373, 54, 374, 67, 340, 62, 335, 36, 313, 9, 256, 13)
 
 [connection signal="area_entered" from="Enemy/WeakSpot" to="Enemy" method="_on_weak_spot_area_entered"]

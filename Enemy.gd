@@ -14,17 +14,12 @@ func _ready():
 	var viewport_size = get_viewport().size
 	var start_position = Vector2(viewport_size.x, viewport_size.y / 2)
 	position = start_position
-
-	weak_spot.connect("area_entered", Callable(self, "_on_weak_spot_area_entered"))
-	shield.connect("area_entered", Callable(self, "_on_shield_area_entered"))	
-
-	#weak_spot.connect("area_entered", Callable(self, "_on_weak_spot_area_entered"))
-	#shield.connect("area_entered", Callable(self, "_on_shield_area_entered"))
-	
 	
 func _physics_process(delta):
+	#For straight path:
 	#position.x -= speed * delta
 	
+	#For sine path:
 	time_passed += delta
 	var wave_offset = sin(time_passed * frequency) * amplitude
 	position -= Vector2(speed * delta, wave_offset * delta).rotated(rotation)
@@ -38,6 +33,7 @@ func _on_weak_spot_area_entered(area):
 
 func _on_shield_area_entered(area):
 	print("Shield hit!")
+	print(area)
 
 func _take_damage(damage):
 	health -= damage

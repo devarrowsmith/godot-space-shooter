@@ -12,6 +12,7 @@ BulletScene = ExtResource("2_cmp21")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 light_mask = 2
+z_index = 11
 scale = Vector2(4, 4)
 texture = ExtResource("3_vrsc5")
 
