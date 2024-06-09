@@ -5,8 +5,8 @@ extends CharacterBody2D
 @export var frequency: float = 5  # Frequency of the wave
 @export var health: int = 3  # Frequency of the wave
 
-@onready var shield = $ShieldHitbox
-@onready var weak_spot = $WeakSpotHitbox
+@onready var weak_spot = $WeakSpot
+@onready var shield = $Shield
 
 var time_passed: float = 0.3
 
@@ -15,8 +15,11 @@ func _ready():
 	var start_position = Vector2(viewport_size.x, viewport_size.y / 2)
 	position = start_position
 
-	weak_spot.connect("body_entered", Callable(self, "_on_weak_spot_body_entered"))
-	shield.connect("body_entered", Callable(self, "_on_shield_body_entered"))
+	weak_spot.connect("area_entered", Callable(self, "_on_weak_spot_area_entered"))
+	shield.connect("area_entered", Callable(self, "_on_shield_area_entered"))	
+
+	#weak_spot.connect("area_entered", Callable(self, "_on_weak_spot_area_entered"))
+	#shield.connect("area_entered", Callable(self, "_on_shield_area_entered"))
 	
 	
 func _physics_process(delta):
@@ -25,11 +28,20 @@ func _physics_process(delta):
 	time_passed += delta
 	var wave_offset = sin(time_passed * frequency) * amplitude
 	position -= Vector2(speed * delta, wave_offset * delta).rotated(rotation)
-	#if position.x < -200:
-		#queue_free()
-		
+
+func _on_weak_spot_area_entered(area):
+	if area is Area2D:
+		if area.is_in_group("Bullets"):
+			print("Weak spot hit!")
+			var damage = area.damage
+			_take_damage(damage)
+
+func _on_shield_area_entered(area):
+	print("Shield hit!")
+
 func _take_damage(damage):
 	health -= damage
+	print("Health remaining:")
+	print(health)
 	if health <= 0:
 		queue_free()
-		

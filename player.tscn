@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkfselh1s7ob7"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_7hro0"]
+[ext_resource type="PackedScene" uid="uid://lupy7w60sx6x" path="res://bullet.tscn" id="2_cmp21"]
+[ext_resource type="Texture2D" uid="uid://btn5qmpkhxssi" path="res://assets/spaceship__player_01.svg" id="3_vrsc5"]
+
+[node name="Player" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_7hro0")
+BulletScene = ExtResource("2_cmp21")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+light_mask = 2
+scale = Vector2(4, 4)
+texture = ExtResource("3_vrsc5")
+
+[node name="PlayerHitbox" type="CollisionPolygon2D" parent="Player"]
+polygon = PackedVector2Array(4, -21, 28, 4, 32, 18, 30, 27, -18, 23, -36, 4, -15, -19)

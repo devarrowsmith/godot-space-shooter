@@ -4,6 +4,7 @@ extends Area2D
 @export var damage: int = 1
 
 func _ready() -> void:
+	add_to_group("Bullets")
 	connect("area_entered", Callable(self, "_on_Bullet_body_entered"))
 
 func _process(delta : float) -> void:
@@ -13,5 +14,4 @@ func _process(delta : float) -> void:
 		
 func _on_Bullet_body_entered(body):
 	if body.name != "Player":
-		body._take_damage(damage)
 		queue_free()

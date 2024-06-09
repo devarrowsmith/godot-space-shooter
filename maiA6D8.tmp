@@ -6,6 +6,8 @@
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_dixu3")
+PlayerScene = ExtResource("2_ykmrm")
+EnemyScene = ExtResource("3_cuwxt")
 
 [node name="Player" parent="." instance=ExtResource("2_ykmrm")]
 
