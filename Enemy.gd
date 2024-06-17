@@ -1,9 +1,11 @@
 extends CharacterBody2D
 
+
+@export var start_position = Vector2()
 @export var speed: float = 200
 @export var amplitude: float = 500  # Amplitude of the wave
 @export var frequency: float = 5  # Frequency of the wave
-@export var health: int = 3  # Frequency of the wave
+@export var health: int = 3
 
 @onready var weak_spot = $WeakSpot
 @onready var shield = $Shield

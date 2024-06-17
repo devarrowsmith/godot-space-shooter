@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-# Declare member variables here
 @export var speed = 400
 @export var BulletScene : PackedScene
 
